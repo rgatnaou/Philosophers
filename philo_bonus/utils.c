@@ -6,7 +6,7 @@
 /*   By: rgatnaou <rgatnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 11:27:41 by rgatnaou          #+#    #+#             */
-/*   Updated: 2022/05/22 20:40:54 by rgatnaou         ###   ########.fr       */
+/*   Updated: 2022/05/27 18:18:45 by rgatnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ int	ft_strlen(char *str)
 
 void	ft_print(t_data *data, int id, char *str)
 {
-	pthread_mutex_lock(&data->write);
+	sem_wait(&data->write);
 	if (!data->dieded)
 	{
 		printf("%lld ", ft_gettime() - data->first_time);
 		printf("%d ", id + 1);
 		printf("%s.\n", str);
 	}
-	pthread_mutex_unlock(&data->write);
+	sem_post(&dat->write)
 }
 
 long long	ft_gettime(void)

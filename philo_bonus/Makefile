@@ -6,11 +6,11 @@
 #    By: rgatnaou <rgatnaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/09 09:27:51 by rgatnaou          #+#    #+#              #
-#    Updated: 2022/05/22 19:07:37 by rgatnaou         ###   ########.fr        #
+#    Updated: 2022/05/27 18:00:07 by rgatnaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = philo
+NAME = philo_bonus
 
 SRC = 	parsing.c		\
 		philosophers.c	\

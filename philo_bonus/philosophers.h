@@ -6,7 +6,7 @@
 /*   By: rgatnaou <rgatnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 09:27:39 by rgatnaou          #+#    #+#             */
-/*   Updated: 2022/05/22 20:30:33 by rgatnaou         ###   ########.fr       */
+/*   Updated: 2022/05/27 18:45:06 by rgatnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include<stdio.h>
 # include<pthread.h>
 # include<stddef.h>
+# include<stddef.h>
+# include<semaphore.h>
 # include<time.h>
 # include<stdlib.h>
 # include<sys/time.h>
@@ -32,8 +34,9 @@ typedef struct s_data
 	int						dieded;
 	int						all_eat;
 	long long				first_time;
-	pthread_mutex_t			*fork;
-	pthread_mutex_t			write;
+	sem_t					*fork;
+	sem_t					write;
+	sem_t					check;
 	struct s_philosophers	*philos;
 }t_data;
 
@@ -44,12 +47,12 @@ typedef struct s_philosophers
 	int				id_fork;
 	int				id_next_fork;
 	long long		last_meal;
-	pthread_t		thread;
+	sem_t			thread;
 	t_data			*data;
 
 }t_filos;
 
-void		*routine(void *arg);
+void		routine(t_data	*data;);
 int			ft_creat(t_data *all);
 int			ft_strlen(char *str);
 void		ft_print(t_data *data, int id, char *str);

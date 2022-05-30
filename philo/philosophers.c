@@ -6,7 +6,7 @@
 /*   By: rgatnaou <rgatnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 09:26:59 by rgatnaou          #+#    #+#             */
-/*   Updated: 2022/05/22 20:26:49 by rgatnaou         ###   ########.fr       */
+/*   Updated: 2022/05/30 17:21:27 by rgatnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	*routine(void *arg)
 	{
 		ft_eats(filo);
 		if (data->all_eat)
-			break ;
+			return (NULL);
 		ft_print(data, filo->id, "is sleeping");
 		ft_sleep(data->time_sleep, data);
 		ft_print(data, filo->id, "is thinking");

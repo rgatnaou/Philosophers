@@ -1,0 +1,49 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philosophers.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rgatnaou <rgatnaou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/09 09:26:59 by rgatnaou          #+#    #+#             */
+/*   Updated: 2022/05/27 18:45:27 by rgatnaou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "philosophers.h"
+
+void	routine(t_data	*data;)
+{
+
+	while (!data->dieded)
+	{
+		ft_eats(filo);
+		if (data->all_eat)
+			return ;
+		ft_print(data, filo->id, "is sleeping");
+		ft_sleep(data->time_sleep, data);
+		ft_print(data, filo->id, "is thinking");
+	}
+	return ;
+}
+
+int	main(int ac, char **av)
+{
+	t_data	data;
+
+	if (!parsing(ac, av, &data))
+		return (0);
+	if (!ft_creat(&data))
+		return (0);
+	if (!death(&data, data.philos))
+	{
+		ft_destroy(&data);
+		free(data.fork);
+		free(data.philos);
+		return (0);
+	}
+	ft_destroy(&data);
+	free(data.fork);
+	free(data.philos);
+	return (1);
+}
