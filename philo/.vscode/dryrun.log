@@ -1,0 +1,10 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/rgatnaou/Desktop/github/philo'
+cc -Wall -Wextra -Werror -g -c parsing.c -o parsing.o
+cc -Wall -Wextra -Werror -g -c philosophers.c -o philosophers.o
+cc -Wall -Wextra -Werror -g -c utils.c -o utils.o
+cc -Wall -Wextra -Werror -g -c creat.c -o creat.o
+cc -Wall -Wextra -Werror -g -c state.c -o state.o
+cc -Wall -Wextra -Werror -g parsing.o philosophers.o utils.o creat.o state.o -o philo
+make: Leaving directory `/Users/rgatnaou/Desktop/github/philo'
+ 

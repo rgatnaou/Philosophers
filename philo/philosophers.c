@@ -6,7 +6,7 @@
 /*   By: rgatnaou <rgatnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 09:26:59 by rgatnaou          #+#    #+#             */
-/*   Updated: 2022/05/30 17:21:27 by rgatnaou         ###   ########.fr       */
+/*   Updated: 2022/05/31 14:37:49 by rgatnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	*routine(void *arg)
 			return (NULL);
 		ft_print(data, filo->id, "is sleeping");
 		ft_sleep(data->time_sleep, data);
+		if (data->dieded)
+		return	(NULL);
 		ft_print(data, filo->id, "is thinking");
 	}
 	return (NULL);

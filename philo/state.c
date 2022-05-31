@@ -6,7 +6,7 @@
 /*   By: rgatnaou <rgatnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 18:14:42 by rgatnaou          #+#    #+#             */
-/*   Updated: 2022/05/30 17:22:39 by rgatnaou         ###   ########.fr       */
+/*   Updated: 2022/05/31 14:47:17 by rgatnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,16 @@ void	ft_eats(t_filos *filo)
 	
 	data = filo->data;
 	pthread_mutex_lock(&data->fork[filo->id_fork]);
-	ft_print(data, filo->id, "has taken a fork");
+	ft_print(data, filo->id, "has taken a fork left");
 	pthread_mutex_lock(&data->fork[filo->id_next_fork]);
-	if (!data->dieded)
+	if (data->dieded)
 		return;
-	ft_print(data, filo->id, "has taken a fork");
+	ft_print(data, filo->id, "has taken a fork right");
 	ft_print(data, filo->id, "is eating");
 	ft_sleep(data->time_eat, data);
 	filo->last_meal = ft_gettime();
+	if (data->dieded)
+		return;
 	filo->n_eat++;
 	pthread_mutex_unlock(&data->fork[filo->id_fork]);
 	pthread_mutex_unlock(&data->fork[filo->id_next_fork]);
@@ -42,8 +44,6 @@ int	finish_meals(t_data *data, t_filos *filo)
 	if (i == data->nb_philos)
 	{
 		data->all_eat = 1;
-		printf("\n\t** all philosophers has eaten at least \"%d\". **\n",
-			data->nb_eat);
 		return (0);
 	}
 	return (1);
@@ -61,8 +61,8 @@ int	death(t_data *data, t_filos *filo)
 			if ((ft_gettime() - filo[i].last_meal) >= data->time_die)
 			{
 				ft_print(data, i, "died");
-				pthread_mutex_lock(&data->write);
 				data->dieded = 1;
+				pthread_mutex_lock(&data->write);
 				return (0);
 			}
 			i++;
