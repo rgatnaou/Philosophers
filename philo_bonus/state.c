@@ -6,7 +6,7 @@
 /*   By: rgatnaou <rgatnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 18:14:42 by rgatnaou          #+#    #+#             */
-/*   Updated: 2022/05/22 20:39:44 by rgatnaou         ###   ########.fr       */
+/*   Updated: 2022/06/02 18:31:18 by rgatnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,61 +17,47 @@ void	ft_eats(t_filos *filo)
 	t_data	*data;
 
 	data = filo->data;
-	pthread_mutex_lock(&data->fork[filo->id_fork]);
-	ft_print(data, filo->id, "has taken a fork");
-	pthread_mutex_lock(&data->fork[filo->id_next_fork]);
-	ft_print(data, filo->id, "has taken a fork");
-	ft_print(data, filo->id, "is eating");
+	sem_wait(data->fork);
+	ft_print(data, filo->id, "has taken a fork", data->dieded);
+	sem_wait(data->fork);
+	ft_print(data, filo->id, "has taken a fork", data->dieded);
+	sem_wait(data->meal);
+	ft_print(data, filo->id, "is eating", data->dieded);
 	ft_sleep(data->time_eat, data);
 	filo->last_meal = ft_gettime();
+	sem_post(data->meal);
+	if (data->dieded)
+		return ;
 	filo->n_eat++;
-	pthread_mutex_unlock(&data->fork[filo->id_fork]);
-	pthread_mutex_unlock(&data->fork[filo->id_next_fork]);
+	sem_post(data->fork);
+	sem_post(data->fork);
 }
 
-int	finish_meals(t_data *data, t_filos *filo)
+void	*death(void *philo)
 {
-	int	i;
+	int		i;
+	t_filos	*filo;
 
-	i = 0;
-	while (data->nb_eat != -1 && filo[i].n_eat >= data->nb_eat
-		&& i < data->nb_philos)
-		i++;
-	if (i == data->nb_philos)
-	{
-		data->all_eat = 1;
-		pthread_mutex_lock(&data->write);
-		printf("\n\t** all philosophers has eaten at least \"%d\". **\n",
-			data->nb_eat);
-		return (0);
-	}
-	return (1);
-}
-
-int	death(t_data *data, t_filos *filo)
-{
-	int	i;
-
-	while (!data->all_eat)
+	filo = (t_filos *)philo;
+	while (1)
 	{
 		i = 0;
-		while (i < data->nb_philos && !data->dieded)
+		sem_wait(filo->data->meal);
+		while (i < filo->data->nb_philos && !filo->data->dieded)
 		{
-			if ((ft_gettime() - filo[i].last_meal) >= data->time_die)
+			if ((ft_gettime() - filo->last_meal) >= filo->data->time_die)
 			{
-				ft_print(data, i, "died");
-				pthread_mutex_lock(&data->write);
-				data->dieded = 1;
-				return (0);
+				filo->data->dieded = 1;
+				sem_wait(filo->data->write);
+				printf("%lld %d died.\n", ft_gettime() - filo->data->first_time,
+					filo->id + 1);
+				exit (1);
 			}
-			usleep(100);
 			i++;
 		}
-		if (data->nb_eat != -1)
-		{
-			if (!finish_meals(data, filo))
-				return (0);
-		}
+		sem_post(filo->data->meal);
+		if (filo->data->nb_eat != -1 && filo->n_eat >= filo->data->nb_eat)
+			return (NULL);
 	}
-	return (1);
+	return (NULL);
 }

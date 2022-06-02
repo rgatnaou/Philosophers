@@ -6,7 +6,7 @@
 /*   By: rgatnaou <rgatnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 09:27:39 by rgatnaou          #+#    #+#             */
-/*   Updated: 2022/05/27 18:45:06 by rgatnaou         ###   ########.fr       */
+/*   Updated: 2022/06/02 16:09:47 by rgatnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 # include<stdio.h>
 # include<pthread.h>
 # include<stddef.h>
-# include<stddef.h>
-# include<semaphore.h>
 # include<time.h>
+# include<semaphore.h>
+# include<signal.h>
 # include<stdlib.h>
 # include<sys/time.h>
 
@@ -32,11 +32,10 @@ typedef struct s_data
 	int						time_sleep;
 	int						nb_eat;
 	int						dieded;
-	int						all_eat;
 	long long				first_time;
 	sem_t					*fork;
-	sem_t					write;
-	sem_t					check;
+	sem_t					*meal;
+	sem_t					*write;
 	struct s_philosophers	*philos;
 }t_data;
 
@@ -47,22 +46,23 @@ typedef struct s_philosophers
 	int				id_fork;
 	int				id_next_fork;
 	long long		last_meal;
-	sem_t			thread;
+	int				pid;
+	pthread_t		death;
 	t_data			*data;
 
 }t_filos;
 
-void		routine(t_data	*data;);
+void		routine(t_filos *arg);
 int			ft_creat(t_data *all);
 int			ft_strlen(char *str);
-void		ft_print(t_data *data, int id, char *str);
+void		ft_print(t_data *data, int id, char *str, int dead);
 int			parsing(int ac, char **av, t_data *all);
 int			ft_atoi(char	*str);
 long long	ft_gettime(void);
 int			ft_error(char *str, void *ptr);
 void		ft_destroy(t_data *data);
 void		ft_eats(t_filos *filo);
-int			death(t_data *data, t_filos *filo);
+void		*death(void *filo);
 void		ft_sleep(long long time, t_data *data);
 
 #endif

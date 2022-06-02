@@ -6,7 +6,7 @@
 /*   By: rgatnaou <rgatnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 09:27:15 by rgatnaou          #+#    #+#             */
-/*   Updated: 2022/05/22 20:25:41 by rgatnaou         ###   ########.fr       */
+/*   Updated: 2022/06/02 16:09:42 by rgatnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int	parsing(int ac, char **av, t_data *data)
 		data->time_eat = ft_atoi(av[3]);
 		data->time_sleep = ft_atoi(av[4]);
 		data->dieded = 0;
-		data->all_eat = 0;
 		data->nb_eat = -1;
 	}
 	if (ac == 6)

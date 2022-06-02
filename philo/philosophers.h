@@ -6,7 +6,7 @@
 /*   By: rgatnaou <rgatnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 09:27:39 by rgatnaou          #+#    #+#             */
-/*   Updated: 2022/05/29 14:14:29 by rgatnaou         ###   ########.fr       */
+/*   Updated: 2022/06/02 10:27:03 by rgatnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_data
 	long long				first_time;
 	pthread_mutex_t			*fork;
 	pthread_mutex_t			write;
+	pthread_mutex_t			meal;
 	struct s_philosophers	*philos;
 }t_data;
 
@@ -52,7 +53,7 @@ typedef struct s_philosophers
 void		*routine(void *arg);
 int			ft_creat(t_data *all);
 int			ft_strlen(char *str);
-void		ft_print(t_data *data, int id, char *str);
+void		ft_print(t_data *data, int id, char *str, int dead);
 int			parsing(int ac, char **av, t_data *all);
 int			ft_atoi(char	*str);
 long long	ft_gettime(void);

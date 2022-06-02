@@ -6,7 +6,7 @@
 /*   By: rgatnaou <rgatnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 09:26:59 by rgatnaou          #+#    #+#             */
-/*   Updated: 2022/05/31 14:37:49 by rgatnaou         ###   ########.fr       */
+/*   Updated: 2022/06/02 10:56:29 by rgatnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,11 @@ void	*routine(void *arg)
 	while (!data->dieded)
 	{
 		ft_eats(filo);
-		if (data->all_eat)
+		if (data->all_eat || data->dieded)
 			return (NULL);
-		ft_print(data, filo->id, "is sleeping");
+		ft_print(data, filo->id, "is sleeping", data->dieded);
 		ft_sleep(data->time_sleep, data);
-		if (data->dieded)
-		return	(NULL);
-		ft_print(data, filo->id, "is thinking");
+		ft_print(data, filo->id, "is thinking", data->dieded);
 	}
 	return (NULL);
 }

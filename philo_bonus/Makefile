@@ -6,7 +6,7 @@
 #    By: rgatnaou <rgatnaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/09 09:27:51 by rgatnaou          #+#    #+#              #
-#    Updated: 2022/05/27 18:00:07 by rgatnaou         ###   ########.fr        #
+#    Updated: 2022/06/01 10:59:26 by rgatnaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC = 	parsing.c		\
 
 CC = cc
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g
 
 HEADER = philosophers.h
 
