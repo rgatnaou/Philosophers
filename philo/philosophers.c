@@ -6,7 +6,7 @@
 /*   By: rgatnaou <rgatnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 09:26:59 by rgatnaou          #+#    #+#             */
-/*   Updated: 2022/06/02 10:56:29 by rgatnaou         ###   ########.fr       */
+/*   Updated: 2022/06/02 20:42:48 by rgatnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,7 @@ int	main(int ac, char **av)
 		return (0);
 	if (!ft_creat(&data))
 		return (0);
-	if (!death(&data, data.philos))
-	{
-		ft_destroy(&data);
-		free(data.fork);
-		free(data.philos);
-		return (0);
-	}
+	death(&data, data.philos);
 	ft_destroy(&data);
 	free(data.fork);
 	free(data.philos);

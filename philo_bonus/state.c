@@ -6,7 +6,7 @@
 /*   By: rgatnaou <rgatnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 18:14:42 by rgatnaou          #+#    #+#             */
-/*   Updated: 2022/06/02 18:31:18 by rgatnaou         ###   ########.fr       */
+/*   Updated: 2022/06/02 19:54:18 by rgatnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,9 @@ void	ft_eats(t_filos *filo)
 	ft_print(data, filo->id, "has taken a fork", data->dieded);
 	sem_wait(data->fork);
 	ft_print(data, filo->id, "has taken a fork", data->dieded);
-	sem_wait(data->meal);
 	ft_print(data, filo->id, "is eating", data->dieded);
 	ft_sleep(data->time_eat, data);
 	filo->last_meal = ft_gettime();
-	sem_post(data->meal);
 	if (data->dieded)
 		return ;
 	filo->n_eat++;

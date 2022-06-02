@@ -6,7 +6,7 @@
 /*   By: rgatnaou <rgatnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 18:14:42 by rgatnaou          #+#    #+#             */
-/*   Updated: 2022/06/02 18:24:06 by rgatnaou         ###   ########.fr       */
+/*   Updated: 2022/06/02 20:43:50 by rgatnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int	death(t_data *data, t_filos *filo)
 			{
 				data->dieded = 1;
 				pthread_mutex_lock(&data->write);
+				usleep(100);
 				printf("%lld %d died.\n", ft_gettime() - data->first_time,
 					filo->id + 1);
 				return (0);

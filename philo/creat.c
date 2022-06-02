@@ -6,7 +6,7 @@
 /*   By: rgatnaou <rgatnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 18:58:56 by rgatnaou          #+#    #+#             */
-/*   Updated: 2022/06/02 16:29:38 by rgatnaou         ###   ########.fr       */
+/*   Updated: 2022/06/02 20:46:41 by rgatnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ int	init_mutex(t_data *data)
 			return (ft_error("error mutex\n", data->fork));
 	}
 	if (pthread_mutex_init(&data->write, NULL))
-		return (ft_error("error mutex\n", data->fork));
-	if (pthread_mutex_init(&data->meal, NULL))
 		return (ft_error("error mutex\n", data->fork));
 	return (1);
 }
@@ -92,5 +90,4 @@ void	ft_destroy(t_data *data)
 		i++;
 	}
 	pthread_mutex_destroy(&data->write);
-	pthread_mutex_destroy(&data->meal);
 }

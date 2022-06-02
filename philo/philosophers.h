@@ -6,7 +6,7 @@
 /*   By: rgatnaou <rgatnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 09:27:39 by rgatnaou          #+#    #+#             */
-/*   Updated: 2022/06/02 10:27:03 by rgatnaou         ###   ########.fr       */
+/*   Updated: 2022/06/02 20:46:05 by rgatnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct s_data
 	long long				first_time;
 	pthread_mutex_t			*fork;
 	pthread_mutex_t			write;
-	pthread_mutex_t			meal;
 	struct s_philosophers	*philos;
 }t_data;
 

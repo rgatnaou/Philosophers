@@ -6,7 +6,7 @@
 /*   By: rgatnaou <rgatnaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 11:27:41 by rgatnaou          #+#    #+#             */
-/*   Updated: 2022/06/02 11:00:31 by rgatnaou         ###   ########.fr       */
+/*   Updated: 2022/06/02 20:11:21 by rgatnaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ int	ft_strlen(char *str)
 
 void	ft_print(t_data *data, int id, char *str, int dieded)
 {
-	if (dieded)
-		return ;
 	pthread_mutex_lock(&data->write);
 	if (!dieded)
 	{
